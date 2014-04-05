@@ -1,2 +1,0 @@
-# distributedMovieSharing
-### a Sails application
