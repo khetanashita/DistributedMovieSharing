@@ -7,14 +7,18 @@
         <link rel="stylesheet" href="/css/style.css">
 		
 		<script src="/socket.io/socket.io.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>  </head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+		
+		
+		
   
-		 
+		
     </head>
 
     <body>
         <h1>Distributed Video Streamer</h1>
 
+		<div>
         <section id="main">
             <fieldset>
                 <legend>Drag n Drop</legend>
@@ -35,7 +39,20 @@
                 <video id="video"></video>
             </fieldset>
         </section>
-
+		</div>
+		
+		<div>
+		
+			<h1>Chat Client</h1>
+			<div id="messages"></div>
+			<textarea rows="2" cols="35" id="chat"></textarea>
+			<input type='button' value='Chat' id='fire' />
+		
+		</div>
+		
+		
+		<script type="text/javascript" src="http://129.21.62.166:8000/faye/client.js"></script>
+		<script src='/js/lib/faye_logic.js'></script>
         <script src="/js/lib/binary.js"></script>
         <script src="/js/lib/jquery.js"></script>
         <script src="/js/lib/common.js"></script>

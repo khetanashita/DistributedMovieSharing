@@ -3,9 +3,9 @@
  */
 'use strict';
 
-var BinaryServer, express, http, path, app, video, server, bs;
+var BinaryServer, express, http, path, app, video, server, bs, faye, server_faye;
 
-var host_ip = '129.21.61.247';
+var host_ip = '129.21.62.166';
 
 BinaryServer = require('binaryjs').BinaryServer;
 express      = require('express');
@@ -13,6 +13,14 @@ http         = require('http');
 path         = require('path');
 app          = express();
 video        = require('./lib/video');
+faye 		 = require('faye');
+
+
+// initialize the faye server
+var bayeux = new faye.NodeAdapter({
+    mount: '/faye',
+    timeout: 45
+});
 
 // all environments
 app.use(express.favicon());
@@ -21,7 +29,19 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
+app.use(express.bodyParser()); // place data in req.body object	
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// capture the posts from the different browsers then broadcast that request to all of the client listeners.
+app.post('/message', function(req, res) {
+    bayeux.getClient().publish('/channel', { text: req.body.message });
+    console.log('broadcast message:' + req.body.message);
+    res.send(200);
+});
+
+
+//bayeux.attach(app);
 
 
 // development only
@@ -31,14 +51,27 @@ if ('development' == app.get('env')) {
 
 server = http.createServer(app);
 
+
+
+
 server.listen(3000, host_ip, function () {
     console.log('Video Server started on http://' + host_ip + ':3000');
 });
 
 
+server_faye = http.createServer(app);
+bayeux.attach(server_faye);
+
+server_faye.listen(8000, host_ip, function () {
+    console.log('Video Server started on http://' + host_ip + ':8000');
+});
+
+
+
 // server.listen(3000, function () {
     // console.log('Video Server started on http://0.0.0.0:3000');
 // });
+
 
 
 

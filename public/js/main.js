@@ -2,7 +2,7 @@ $(document).ready(function () {
     var $video, $box, $progress, $list;
 	var name;
 	
-	var host_ip = '129.21.61.247';
+	var host_ip = '129.21.62.166';
 	
 
     $video    = $('#video');
