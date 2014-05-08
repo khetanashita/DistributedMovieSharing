@@ -5,7 +5,7 @@
 
 var BinaryServer, express, http, path, app, video, server, bs, faye, server_faye;
 
-var host_ip = '129.21.62.166';
+var host_ip = '129.21.62.129';
 
 BinaryServer = require('binaryjs').BinaryServer;
 express      = require('express');
@@ -33,12 +33,6 @@ app.use(express.bodyParser()); // place data in req.body object
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// capture the posts from the different browsers then broadcast that request to all of the client listeners.
-app.post('/message', function(req, res) {
-    bayeux.getClient().publish('/channel', { text: req.body.message });
-    console.log('broadcast message:' + req.body.message);
-    res.send(200);
-});
 
 
 //bayeux.attach(app);
@@ -74,6 +68,45 @@ server_faye.listen(8000, host_ip, function () {
 
 
 
+
+// capture the posts from the different browsers then broadcast that request to all of the client listeners.
+app.post('/message', function(req, res) {
+    bayeux.getClient().publish('/channel', { text: req.body.message });
+    console.log('broadcast message:' + req.body.message);
+    res.send(200);
+});
+
+
+
+app.post('/kids', function(req, res) {
+    bayeux.getClient().publish('/kids_channel', { text: req.body.message });
+    console.log('broadcast message:' + req.body.message);
+    res.send(200);
+});
+
+app.post('/emotional', function(req, res) {
+    bayeux.getClient().publish('/emotional_channel', { text: req.body.message });
+    console.log('broadcast message:' + req.body.message);
+    res.send(200);
+});
+
+app.post('/funny', function(req, res) {
+    bayeux.getClient().publish('/funny_channel', { text: req.body.message });
+    console.log('broadcast message:' + req.body.message);
+    res.send(200);
+});
+
+app.post('/romantic', function(req, res) {
+    bayeux.getClient().publish('/romantic_channel', { text: req.body.message });
+    console.log('broadcast message:' + req.body.message);
+    res.send(200);
+});
+
+app.post('/sports', function(req, res) {
+    bayeux.getClient().publish('/sports_channel', { text: req.body.message });
+    console.log('broadcast message:' + req.body.message);
+    res.send(200);
+});
 
 
 

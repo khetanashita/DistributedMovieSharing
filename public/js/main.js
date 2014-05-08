@@ -2,7 +2,8 @@ $(document).ready(function () {
     var $video, $box, $progress, $list;
 	var name;
 	
-	var host_ip = '129.21.62.166';
+	var host_ip = '129.21.62.129';
+	var video_category = "rock";
 	
 
     $video    = $('#video');
@@ -58,6 +59,8 @@ $(document).ready(function () {
 				
 				console.log(name);
 				
+				
+				
 				//var coordinator = "";
 				
 				socket.emit('get_coordinator', { message: 'give me the video server coordinator'});
@@ -76,9 +79,13 @@ $(document).ready(function () {
 
         file = e.originalEvent.dataTransfer.files[0];
         tx   = 0;
+		
+		
 
         video.upload(file, function (err, data) {
             var msg;
+			
+			
 
             if (data.end) {
                 msg = "Upload complete: " + file.name;
@@ -102,6 +109,11 @@ $(document).ready(function () {
                 }, 5000);
             }
         });
+		
+		
+		GetTheCategory();
+		console.log(video_category);
+		NotifyClients(video_category);
     }
 	
 	
@@ -147,6 +159,10 @@ $(document).ready(function () {
 	});
 	
 	
+	function GetTheCategory()
+	{
+		video_category = $('input[name=video_category]').val();
+	}
 	
 	
 	
