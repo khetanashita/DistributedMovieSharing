@@ -1,4 +1,4 @@
-var hostname = '129.21.62.129';
+var hostname = '129.21.63.103';
 			
 var $chat = $('#chat');
 $('#fire').on('click', function() {
@@ -20,10 +20,8 @@ $('#fire').on('click', function() {
 
 function NotifyClients(video_category)
 {
-
 	var url = 'http://' + hostname + ':3000/' + video_category;
-	
-	var message = {message: video_category + ' video uploaded'};
+	var message = {message: 'NEW ' + video_category + ' video uploaded!!!... Watch it now.'};
 	var dataType = 'json';
 	$.ajax({
 	  type: 'POST',
@@ -31,37 +29,28 @@ function NotifyClients(video_category)
 	  data: message,
 	  dataType: dataType,
 	});
-	
 
 	console.log("notification sent to client");
 }
 
 
-//var client = new Faye.Client('http://' + hostname + ':8000/faye');
-var client = new Faye.Client('http://' + hostname + ':8000/faye', {
-    timeout: 120
-});
-
-client.disable('autodisconnect');
-
+var client = new Faye.Client('http://' + hostname + ':8000/faye');
 var client_retained = client;
 
 function SubscribeTo()
 {
-
-	var channel_name = $('input[name=video_category]').val();
-	
-	console.log(channel_name);
+	var channel_name = $('#categorie_list').val();
 	
 	client_retained.subscribe('/' + channel_name + '_channel', function(message) {
 
-		$('#messages').append('<p>' + message.text + '</p>');
+		$('#notify').slideUp(function() {
+			
+				$('#notify').html(message.text).slideDown();
+				
+		  });
+		
 	});
-	
-	
 }
-
-
 
 
 	
@@ -69,35 +58,3 @@ client.subscribe('/channel', function(message) {
 
 	$('#messages').append('<p>' + message.text + '</p>');
 });
-
-
-
-// client.subscribe('/kids_channel', function(message) {
-
-	// $('#messages').append('<p>' + message.text + '</p>');
-// });
-
-
-// client.subscribe('/emotional_channel', function(message) {
-
-	// $('#messages').append('<p>' + message.text + '</p>');
-// });
-
-
-// client.subscribe('/funny_channel', function(message) {
-
-	// $('#messages').append('<p>' + message.text + '</p>');
-// });
-
-
-// client.subscribe('/romantic_channel', function(message) {
-
-	// $('#messages').append('<p>' + message.text + '</p>');
-// });
-
-
-// client.subscribe('/sports_channel', function(message) {
-
-	// $('#messages').append('<p>' + message.text + '</p>');
-// });
-			

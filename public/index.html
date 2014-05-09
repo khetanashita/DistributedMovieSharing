@@ -6,6 +6,7 @@
 
         <link rel="stylesheet" href="/css/style.css">
 		
+		
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
 		
@@ -16,61 +17,81 @@
     </head>
 
     <body>
-        <h1>Distributed Video Streamer</h1>
-
-		<div>
+	
+		<div id="notify"></div>
+		
+	
+		<div style="width:100%; display:table;">
+			<div style="display: table-row">
+				<div style="width:70%; display:table-cell;"> 
+					<h1>Distributed Video Streamer</h1> 
+				</div>
+				<div style="display:table-cell;">  
+					<button style="width:100px; height:30px;"><a href="#to-upload" class="anchor-like-button">UPLOAD</a></button>
+				</div>
+			</div>
+		</div>
+			
+		
+			
+		
+		<div id="upper_div">
         <section id="main">
             <fieldset>
-                <legend>Drag n Drop</legend>
-                <aside id="upload-box">
-                    <article id="progress">Drop file here</article>
-                </aside>
-            </fieldset>
-
-            <fieldset>
-                <legend>Select a Link</legend>
-
                 <nav id="list"></nav>
             </fieldset>
-
             <fieldset>
-                <legend>Play the Video</legend>
-
                 <video id="video"></video>
             </fieldset>
         </section>
 		</div>
 		
-		<div>
 		
-			<h1>Chat Client</h1>
-			<div id="messages"></div>
-			<textarea rows="2" cols="35" id="chat"></textarea>
-			<input type='button' value='Chat' id='fire' />
+		
+		<div id="lower_div">
+			<br/><br/><br/>
 			
-			<input list="categorie_list" name="video_category" id="video_category">
-			<datalist id="categorie_list">
-			  <option value="kids">asdfsf</option>
-			  <option value="emotional">asdfasdfwe</option>
-			  <option value="funny">wfewf</option>
-			  <option value="romantic">svsv</option>
-			  <option value="sports">sadfsadf</option>
-			</datalist>
+			<a name="to-upload"></a>
+		
+			<fieldset>
+                <legend>Drag n Drop</legend>
+                <aside id="upload-box">
+                    <article id="progress">Drop file here</article>
+                </aside>
+            </fieldset>
+		
+			<h3>Subscription Notification</h3>
+			<div id="messages"></div>
+			
+			<select id="categorie_list" name="categorie_list">
+				<option value="kids" selected >Kids</option>
+				<option value="emotional">Emotional</option>
+				<option value="funny">Funny</option>
+				<option value="romantic">Romantic</option>
+				<option value="sports">Sports</option>
+            </select>
 			
 			<input type='button' value='Subscribe' id='subscribe' onclick="SubscribeTo()" />
-		
 		</div>
 		
 		
-		
-		
-		<script type="text/javascript" src="http://129.21.62.129:8000/faye/client.js"></script>
+		<script type="text/javascript" src="http://129.21.63.103:8000/faye/client.js"></script>
 		
 		<script>
+		
+			
+			function notify()
+			{
+				
+			}
 			
 			
-		
-		
+			$('#notify').click(function() 
+			{
+				$(this).slideUp();
+			});
+			
+
 		</script>
 		
 		
@@ -80,5 +101,6 @@
         <script src="/js/lib/common.js"></script>
         <script src="/js/lib/video.js"></script>
         <script src="/js/main.js"></script>
+		<script src='/js/lib/smooth.pack.js'></script>
     </body>
 </html>

@@ -2,7 +2,7 @@ $(document).ready(function () {
     var $video, $box, $progress, $list;
 	var name;
 	
-	var host_ip = '129.21.62.129';
+	var host_ip = '129.21.63.103';
 	var video_category = "rock";
 	
 
@@ -59,14 +59,9 @@ $(document).ready(function () {
 				
 				console.log(name);
 				
-				
-				
 				//var coordinator = "";
 				
 				socket.emit('get_coordinator', { message: 'give me the video server coordinator'});
-				
-				
-				
                 
             });
         });
@@ -161,7 +156,7 @@ $(document).ready(function () {
 	
 	function GetTheCategory()
 	{
-		video_category = $('input[name=video_category]').val();
+		video_category = $('#categorie_list').val();
 	}
 	
 	
