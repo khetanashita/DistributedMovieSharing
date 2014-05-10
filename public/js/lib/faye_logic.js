@@ -1,4 +1,4 @@
-var hostname = '129.21.63.103';
+var hostname = '129.21.61.106';
 			
 var $chat = $('#chat');
 $('#fire').on('click', function() {
@@ -50,6 +50,17 @@ function SubscribeTo()
 		  });
 		
 	});
+}
+
+
+
+function UnsubscribeTo()
+{
+	var channel_name = $('#categorie_list_unsubs').val();
+	
+	console.log("UNNN sent to client");
+	
+	client_retained.unsubscribe('/' + channel_name + '_channel');
 }
 
 

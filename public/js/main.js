@@ -2,7 +2,7 @@ $(document).ready(function () {
     var $video, $box, $progress, $list;
 	var name;
 	
-	var host_ip = '129.21.63.103';
+	var host_ip = '129.21.61.106';
 	var video_category = "rock";
 	
 
@@ -156,7 +156,7 @@ $(document).ready(function () {
 	
 	function GetTheCategory()
 	{
-		video_category = $('#categorie_list').val();
+		video_category = $('#categorie_list_upload').val();
 	}
 	
 	

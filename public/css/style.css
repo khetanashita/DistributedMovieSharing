@@ -15,8 +15,6 @@ fieldset {
 
 #main {
     float: left;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #upload-box {
@@ -48,7 +46,11 @@ fieldset {
     overflow: auto;
     background: #222;
     width: 300px;
-    height: 503px;
+    height: 360px;
+}
+
+.subscription-section {
+    width: 300px;
 }
 
 #list ul {
@@ -57,7 +59,7 @@ fieldset {
     padding: 10px;
 }
 
-li:before {
+#list li:before {
     content: "•";
     padding-right: 4px;
     color: white; /* or whatever color you prefer */
@@ -78,7 +80,12 @@ li:before {
 .anchor-like-button
 {
 	text-decoration: none !important;
-	color:black;
+	color:#c4c4c4;
+}
+
+h4
+{
+	margin:5px !important;
 }
 
 
@@ -92,5 +99,53 @@ li:before {
 	margin-left: -90px;
 	padding:5px;
 	padding-left:100px;
-	
 }
+
+
+.subscribe_list
+{
+	height:30px;
+	width:120px;
+}
+
+.subscribe_btn
+{
+	height:30px;
+	width:100px;
+	margin-left:5px;
+}
+
+
+.upload-wrapper
+{
+	border: 0;
+	width:91%;
+	background-color:#75a147;
+	padding-bottom:30px;
+	padding-left:30px;
+}
+
+
+.button
+{
+	background-color: #5b5da3;
+	color: #c4c4c4;
+}
+
+.tnclist
+{
+	font-size:10px;
+	margin-left:-20px;
+	margin-top:-20px;
+}
+
+
+
+
+
+
+
+
+
+
+

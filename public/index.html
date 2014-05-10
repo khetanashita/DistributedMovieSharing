@@ -23,11 +23,11 @@
 	
 		<div style="width:100%; display:table;">
 			<div style="display: table-row">
-				<div style="width:70%; display:table-cell;"> 
+				<div style="width:80%; display:table-cell;"> 
 					<h1>Distributed Video Streamer</h1> 
 				</div>
 				<div style="display:table-cell;">  
-					<button style="width:100px; height:30px;"><a href="#to-upload" class="anchor-like-button">UPLOAD</a></button>
+					<button style="width:100px; height:30px;" class="button"><a href="#to-upload" class="anchor-like-button">UPLOAD</a></button>
 				</div>
 			</div>
 		</div>
@@ -37,12 +37,57 @@
 		
 		<div id="upper_div">
         <section id="main">
-            <fieldset>
-                <nav id="list"></nav>
-            </fieldset>
-            <fieldset>
-                <video id="video"></video>
-            </fieldset>
+		
+			<div style="width:100%; display:table;">
+				<div style="display: table-row">
+					<div style="width:30%; display:table-cell;"> 
+						<fieldset>
+							<nav id="list"></nav>
+						</fieldset>
+						
+						<fieldset>
+							<div class="subscription-section">
+							<h4>Subscribe here</h4>
+							<select id="categorie_list" name="categorie_list" class="subscribe_list">
+								<option value="kids" selected >Kids</option>
+								<option value="emotional">Emotional</option>
+								<option value="funny">Funny</option>
+								<option value="romantic">Romantic</option>
+								<option value="sports">Sports</option>
+							</select>
+							<input type='button' value='Subscribe' id='subscribe' onclick="SubscribeTo()" class="subscribe_btn button"/>
+							</div>
+						</fieldset>
+						
+						<fieldset>
+							<div class="subscription-section">
+							<h4>Un-subscribe here</h4>
+							<select id="categorie_list_unsubs" name="categorie_list_unsubs" class="subscribe_list">
+								<option value="kids" selected >Kids</option>
+								<option value="emotional">Emotional</option>
+								<option value="funny">Funny</option>
+								<option value="romantic">Romantic</option>
+								<option value="sports">Sports</option>
+							</select>
+							<input type='button' value='Un-subscribe' id='Un-subscribe' onclick="UnsubscribeTo()" class="subscribe_btn button"/>
+							</div>
+						</fieldset>
+						
+					</div>
+					<div style="display:table-cell;">  
+						<fieldset style="margin-left:-40px;">
+							<video id="video"></video>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		
+			
+            
+			
+			
+			
+            
         </section>
 		</div>
 		
@@ -51,31 +96,67 @@
 		<div id="lower_div">
 			<br/><br/><br/>
 			
-			<a name="to-upload"></a>
-		
-			<fieldset>
-                <legend>Drag n Drop</legend>
-                <aside id="upload-box">
-                    <article id="progress">Drop file here</article>
-                </aside>
+			
+			
+			<fieldset class="upload-wrapper">
+			
+				<h2>UPLOAD your video for free..!</h2>
+				<div style="width:100%; display:table;">
+					<div style="display: table-row">
+						<div style="width:40%; display:table-cell; margin-left:50px;"> 
+							
+							<h3>STEP 1. Select a category</h3>
+							<select id="categorie_list_upload" name="categorie_list_upload" style="width: 50%; height:30px;">
+								<option value="kids" selected >Kids</option>
+								<option value="emotional">Emotional</option>
+								<option value="funny">Funny</option>
+								<option value="romantic">Romantic</option>
+								<option value="sports">Sports</option>
+							</select>
+							
+							<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+							
+							<div>
+								<h6>Terms and Conditions</h6>
+								<ul class="tnclist">
+									<li>Spamming will be charged in the court.</li>
+									<li>Adult videos are strictly prohibited.</li>
+									<li>Educational videos will be rewarded.</li>
+									<li>Some videos are really funny!</li>
+								</ul>
+							</div>
+							
+						</div>
+						<div style="display:table-cell;">  
+							<h3>STEP 2. Drag and drop your video in the box below.</h3>
+							<div style="margin-left:20%;">
+							<fieldset style="margin-top:10px;">
+							<aside id="upload-box">
+								<article id="progress">Drop file here</article>
+							</aside>
+							</fieldset>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				
+			
+                
             </fieldset>
+			
+			
 		
-			<h3>Subscription Notification</h3>
-			<div id="messages"></div>
 			
-			<select id="categorie_list" name="categorie_list">
-				<option value="kids" selected >Kids</option>
-				<option value="emotional">Emotional</option>
-				<option value="funny">Funny</option>
-				<option value="romantic">Romantic</option>
-				<option value="sports">Sports</option>
-            </select>
 			
-			<input type='button' value='Subscribe' id='subscribe' onclick="SubscribeTo()" />
+			
 		</div>
 		
+		<div style=" position:absolute; top:1000px;">
+		<a name="to-upload"></a>
+		</div>
 		
-		<script type="text/javascript" src="http://129.21.63.103:8000/faye/client.js"></script>
+		<script type="text/javascript" src="http://129.21.61.106:8000/faye/client.js"></script>
 		
 		<script>
 		
