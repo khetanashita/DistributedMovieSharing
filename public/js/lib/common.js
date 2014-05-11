@@ -1,7 +1,7 @@
 var hostname, client;
 
 //hostname = window.location.hostname;
-hostname = '129.21.62.166';
+hostname = '129.21.61.103';
 client   = new BinaryClient('ws://' + hostname + ':9000');
 
 
