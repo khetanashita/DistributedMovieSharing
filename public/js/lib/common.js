@@ -1,7 +1,7 @@
 var hostname, client;
 
 //hostname = window.location.hostname;
-hostname = '129.21.61.103';
+hostname = '129.21.135.183';
 client   = new BinaryClient('ws://' + hostname + ':9000');
 
 
@@ -26,7 +26,7 @@ function emit(event, data, file) {
 		
 		client_get_video.on('open', function () {
 			
-			console.log("asdfasdfdsf");
+		//	console.log("asdfasdfdsf");
 			//return client_get_video.send(file, data);
 			
 			client.send =  client_get_video.send(file, data);
