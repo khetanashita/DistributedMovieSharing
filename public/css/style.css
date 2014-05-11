@@ -42,23 +42,27 @@ fieldset {
     right: 0;
 }
 
+#subscribed_list,
 #list {
     overflow: auto;
     background: #222;
     width: 300px;
-    height: 360px;
+    height: 322px;
 }
 
 .subscription-section {
     width: 300px;
 }
 
+#subscribed_list ul,
 #list ul {
     list-style: none;
     margin: 0;
     padding: 10px;
 }
 
+
+#subscribed_list li:before,
 #list li:before {
     content: "•";
     padding-right: 4px;
@@ -140,6 +144,12 @@ h4
 }
 
 
+.show_list
+{
+	height:30px;
+	width:150px;
+	margin-bottom:5px;
+}
 
 
 

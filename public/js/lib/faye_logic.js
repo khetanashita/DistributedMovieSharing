@@ -1,4 +1,5 @@
-var hostname = '129.21.61.106';
+var hostname = '129.21.61.103';
+var my_subscriptions = [];
 			
 var $chat = $('#chat');
 $('#fire').on('click', function() {
@@ -18,10 +19,10 @@ $('#fire').on('click', function() {
 });
 
 
-function NotifyClients(video_category)
+function NotifyClients(video_category, vid_name)
 {
 	var url = 'http://' + hostname + ':3000/' + video_category;
-	var message = {message: 'NEW ' + video_category + ' video uploaded!!!... Watch it now.'};
+	var message = {message: 'NEW ' + video_category + ' video uploaded!!!... Watch it now.', video: vid_name};
 	var dataType = 'json';
 	$.ajax({
 	  type: 'POST',
@@ -45,11 +46,20 @@ function SubscribeTo()
 
 		$('#notify').slideUp(function() {
 			
+				my_subscriptions.push(message.vid_name);
+				my_subscriptions = $.unique(my_subscriptions); // save only one copy of file name
+				SetUpSubscriptionList();
+				
 				$('#notify').html(message.text).slideDown();
 				
+				
+				console.log(my_subscriptions);
 		  });
 		
 	});
+	
+	
+	
 }
 
 

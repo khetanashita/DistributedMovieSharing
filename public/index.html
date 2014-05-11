@@ -41,8 +41,17 @@
 			<div style="width:100%; display:table;">
 				<div style="display: table-row">
 					<div style="width:30%; display:table-cell;"> 
+						
 						<fieldset>
+						
+							<select id="show_list" name="show_list" class="show_list">
+								<option value="all" selected >All</option>
+								<option value="my_subscription">My Subscription</option>
+							</select>
+						
+						
 							<nav id="list"></nav>
+							<nav id="subscribed_list" style="display:none"></nav>
 						</fieldset>
 						
 						<fieldset>
@@ -156,7 +165,7 @@
 		<a name="to-upload"></a>
 		</div>
 		
-		<script type="text/javascript" src="http://129.21.61.106:8000/faye/client.js"></script>
+		<script type="text/javascript" src="http://129.21.61.103:8000/faye/client.js"></script>
 		
 		<script>
 		
@@ -177,6 +186,7 @@
 		
 		
 		<script src='/js/lib/faye_logic.js'></script>
+		<script src='/js/lib/my_js.js'></script>
         <script src="/js/lib/binary.js"></script>
         <script src="/js/lib/jquery.js"></script>
         <script src="/js/lib/common.js"></script>

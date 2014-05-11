@@ -5,7 +5,7 @@
 
 var BinaryServer, express, http, path, app, video, server, bs, faye, server_faye;
 
-var host_ip = '129.21.62.129';
+var host_ip = '129.21.61.103';
 
 BinaryServer = require('binaryjs').BinaryServer;
 express      = require('express');
@@ -79,7 +79,7 @@ app.post('/message', function(req, res) {
 
 
 app.post('/kids', function(req, res) {
-    bayeux.getClient().publish('/kids_channel', { text: req.body.message });
+    bayeux.getClient().publish('/kids_channel', { text: req.body.message, vid_name: req.body.video });
     console.log('broadcast message:' + req.body.message);
     res.send(200);
 });

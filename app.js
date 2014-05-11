@@ -6,10 +6,10 @@
 var args = process.argv.slice(2); // get the port number from argument
 // console.log(args[0]);
 //var listOfServers = [ '129.21.60.158:9001', '9002'];
-var listOfServers = [ '129.21.62.166:9001', '129.21.100.179:9001'];
+var listOfServers = [ '129.21.61.103:9001', '129.21.100.179:9001'];
 var takemod = -1;
 
-var host_ip = '129.21.62.166';
+var host_ip = '129.21.61.103';
 
 
 var BinaryServer, express, http, path, app, video, server, bs;
@@ -40,11 +40,6 @@ server = http.createServer(app);
 server.listen(3001, host_ip, function () {
     console.log('Video Server started on http://' + host_ip + ':3000');
 });
-
-
-// server.listen(3001, function () {
-    // console.log('Video Server started on http://0.0.0.0:3001');
-// });
 
 
 // use socket.io
@@ -89,10 +84,8 @@ bs.on('connection', function (client) {
 
             // request for a video
             case 'request':
-			
 				
-				console.log("xxxxx aappp" + meta.name);
-				
+				console.log("client wants... " + meta.name);
 				
 				var http_local = require('http');
 				var fs_local = require('fs');
@@ -105,14 +98,7 @@ bs.on('connection', function (client) {
 						
 						video.request(client, meta);
 					});
-				  
-				  
-				  
 				})
-			
-				
-				
-  
                 
                 break;
 
