@@ -6,10 +6,10 @@
 var args = process.argv.slice(2); // get the port number from argument
 // console.log(args[0]);
 //var listOfServers = [ '129.21.60.158:9001', '9002'];
-var listOfServers = [ '129.21.61.103:9001', '129.21.100.179:9001'];
+var listOfServers = [ '129.21.135.183:9001', '129.21.61.26:9001'];
 var takemod = -1;
 
-var host_ip = '129.21.61.103';
+var host_ip = '129.21.135.183';
 
 
 var BinaryServer, express, http, path, app, video, server, bs;
