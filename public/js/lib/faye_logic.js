@@ -1,4 +1,4 @@
-var hostname = '129.21.61.103';
+var hostname = '129.21.135.183';
 var my_subscriptions = [];
 			
 var $chat = $('#chat');
@@ -68,14 +68,14 @@ function UnsubscribeTo()
 {
 	var channel_name = $('#categorie_list_unsubs').val();
 	
-	console.log("UNNN sent to client");
+	//console.log("UNNN sent to client");
 	
 	client_retained.unsubscribe('/' + channel_name + '_channel');
 }
 
-
+/*
 	
 client.subscribe('/channel', function(message) {
 
 	$('#messages').append('<p>' + message.text + '</p>');
-});
+});*/

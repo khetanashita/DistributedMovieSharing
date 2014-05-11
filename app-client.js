@@ -5,7 +5,7 @@
 
 var BinaryServer, express, http, path, app, video, server, bs, faye, server_faye;
 
-var host_ip = '129.21.61.103';
+var host_ip = '129.21.135.183';
 
 BinaryServer = require('binaryjs').BinaryServer;
 express      = require('express');
@@ -124,7 +124,7 @@ bs.on('connection', function (client) {
 
             // request for a video
             case 'request':
-				console.log("xxxxx");
+				//console.log("xxxxx");
 				
 				// var io = require('socket.io-client'),
 				// socket = io.connect('localhost', {
@@ -208,4 +208,20 @@ io.sockets.on('connection', function(socket){
     // });
 	
 });
+
+
+bayeux.on('subscribe', function(clientId,channel) {
+if(channel!=null){
+console.log("Client has subscribed to "+channel);
+}
+  // event listener logic
+})
+
+bayeux.on('unsubscribe', function(clientId,channel) {
+if(channel!=null){
+console.log("Client has unsubscribed to "+channel);
+}
+  // event listener logic
+})
+
 
