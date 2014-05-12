@@ -64,6 +64,9 @@ function emit(event, data, file) {
 	
 	
 
-    
+	return client.send(file, data);
+		
+	}
+	
     
 }

@@ -10,7 +10,7 @@ var listOfServers = [ '129.21.135.183:9001', '129.21.61.26:9001'];
 var takemod = -1;
 
 var host_ip = '129.21.135.183';
-var my_video_server_ip = '129.21.61.26';
+var my_video_server_ip = '129.21.135.183';
 
 
 var BinaryServer, express, http, path, app, video, server, bs;
