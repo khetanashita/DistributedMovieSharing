@@ -1,4 +1,75 @@
-installed:
+**Distributed Video streaming version 1.0 5/14/2014
 
-npm install socket.io-client
-npm install socket.io
+GENERAL USAGE INFORMATION:
+-------------------------------------------------------------------------------------------------------------------
+-- This application allows users to stream, upload and subscribe to videos.
+-- We address various distributed systems issues in this project:
+	-- load balancing using Round Robin method
+	-- failure handling using Bully algorithm
+	-- pub/sub design patter
+	
+	
+
+TECHNOLOGIES USED
+--------------------------------------------------------------------------------------------------------------------
+User interface:
+- HTML
+- CSS
+
+Client-side logic:
+- JavaScript
+
+Server side logic:
+- NodeJS (ExpressJS)
+
+Third-party libraris:
+- BinaryJS
+- Socket-io
+
+
+
+
+GETTING STARTED
+--------------------------------------------------------------------------------------------------------------------
+Servers:
+- Run app-client.js -> Bootstrap server
+	-- command: node app-client.js
+- Run bully.js -> video servers on multiple machines
+	-- command: node app.js
+
+Client:
+- Open browser and connect to the bootstrap server IP address and port number through address bar
+	-- example: 129.21.100.65:3000
+
+
+
+		
+FEATURES
+--------------------------------------------------------------------------------------------------------------------
+Streaming:
+- List of videos are available which you can stream
+- Load balancing is performed using Round Robin mechanism
+	-- In this different video servers are selected to serve the client
+	-- This is done by the coordinator server
+- Bully algorithm is implemented to handle failure of coordinator server
+	-- Each time coordinator fails, election algorithm is run and new coordinator is selected
+	
+	
+Video Uploading:
+- Drag and drop feature is given to users to upload their videos.
+- It works similar to streaming of videos wherein different video servers are selected each time the video is uploaded
+- Thus the load is balanced
+
+
+Pub/Sub:
+- As users are given option to upload video, they can publish their videos selecting different video categories
+- Users can also subscribe to different video category
+- Each time when new video is uploaded in the subscribed category, user is then notified about it.
+
+
+
+OTHER	
+--------------------------------------------------------------------------------------------------------------------
+ 
+
+All rights reserved.

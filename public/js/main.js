@@ -2,7 +2,7 @@ $(document).ready(function () {
     var $video, $box, $progress, $list;
 	var name;
 	
-	var host_ip = '129.21.135.183';
+	var host_ip = '129.21.60.85';
 	var video_category = "rock";
 	
 
@@ -76,12 +76,12 @@ $(document).ready(function () {
         tx   = 0;
 		
 		
-
+		console.log("xxxx in main upload");
         video.upload(file, function (err, data) {
             var msg;
 			
 			
-
+			
             if (data.end) {
                 msg = "Upload complete: " + file.name;
 
@@ -113,10 +113,10 @@ $(document).ready(function () {
 	
 	
 	
-	function get_video(port)
+	function get_video(ip, port)
 	{
-		//console.log(port);
-		video.request(name, port);
+		console.log(port);
+		video.request(name, ip, port);
 	}
 	
 	
@@ -131,7 +131,8 @@ $(document).ready(function () {
 					
 					// var socket_to_coordinator = io.connect('http://localhost:' + data.server_port);
 					// var socket_to_coordinator = io.connect('http://129.21.61.0:' + data.server_port);
-					var socket_to_coordinator = io.connect('http://' + host_ip + ':' + data.server_port);
+					//var socket_to_coordinator = io.connect('http://' + host_ip + ':' + data.server_port);
+					var socket_to_coordinator = io.connect('http://' + data.coord_ip + ':' + data.server_port);
 					
 					socket_to_coordinator.emit('get_videoserver', { message: 'give me the video server'});
 					
@@ -143,7 +144,8 @@ $(document).ready(function () {
 						
 						//socket_to_coordinator.disconnect();
 						
-						get_video(data_coord.server_port);
+						//get_video(data_coord.server_port);
+						get_video(data_coord.video_coordIP, data_coord.server_port);
 					
 					});
 					

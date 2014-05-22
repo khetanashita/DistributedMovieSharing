@@ -1,4 +1,4 @@
-var hostname = '129.21.135.183';
+var hostname = '129.21.60.85';
 var my_subscriptions = [];
 			
 var $chat = $('#chat');
@@ -47,13 +47,15 @@ function SubscribeTo()
 		$('#notify').slideUp(function() {
 			
 				my_subscriptions.push(message.vid_name);
+				
 				my_subscriptions = $.unique(my_subscriptions); // save only one copy of file name
+				console.log(my_subscriptions);
 				SetUpSubscriptionList();
 				
 				$('#notify').html(message.text).slideDown();
 				
 				
-				console.log(my_subscriptions);
+				
 		  });
 		
 	});

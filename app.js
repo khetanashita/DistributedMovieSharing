@@ -97,6 +97,7 @@ bs.on('connection', function (client) {
 				  
 				  file.on('finish', function() {
 						
+						console.log("\n requesting....");
 						video.request(client, meta);
 					});
 				})

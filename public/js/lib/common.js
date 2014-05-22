@@ -1,7 +1,7 @@
 var hostname, client;
 
 //hostname = window.location.hostname;
-hostname = '129.21.135.183';
+hostname = '129.21.60.85';
 client   = new BinaryClient('ws://' + hostname + ':9000');
 
 
@@ -19,19 +19,23 @@ function emit(event, data, file) {
 	{
 		//
 		
+		console.log(data.video_serverIP + ':' + data.server_port + " common.js");
 		
 		//client_get_video   = new BinaryClient('ws://' + hostname + ':' + data.server_port);
+		client_get_video   = new BinaryClient('ws://' + data.video_serverIP + ':' + data.server_port);
 		
-		client_get_video   = new BinaryClient('ws://' + data.server_port);
+		//client_get_video   = new BinaryClient('ws://' + data.server_port);
 		
 		client_get_video.on('open', function () {
 			
-		//	console.log("asdfasdfdsf");
+			console.log("asdfasdfdsf");
 			//return client_get_video.send(file, data);
 			
-			client.send =  client_get_video.send(file, data);
+			//client.send =  client_get_video.send(file, data);
 			
-			return client.send;
+			//return client.send;
+			
+			return client_get_video.send(file, data);
 			
 			
 		});
@@ -59,6 +63,7 @@ function emit(event, data, file) {
 	}
 	else
 	{
+		console.log(data.server_port + " yyyyxxxxx");
 		return client.send(file, data);
 	}
 	

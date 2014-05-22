@@ -30,11 +30,11 @@ var video = (function () {
         stream.on('error', cb);
     }
 
-    function request(name, server_port_param) {
+    function request(name, ip, server_port_param) {
 		
 		//console.log(server_port_param);
 	
-        emit('request', { name : name, server_port : server_port_param });
+        emit('request', { name : name, video_serverIP: ip, server_port : server_port_param });
     }
 
     function download(stream, cb) {

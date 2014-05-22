@@ -5,7 +5,7 @@
 
 var BinaryServer, express, http, path, app, video, server, bs, faye, server_faye;
 
-var host_ip = '129.21.135.183';
+var host_ip = '129.21.60.85';
 
 BinaryServer = require('binaryjs').BinaryServer;
 express      = require('express');
@@ -45,11 +45,8 @@ if ('development' == app.get('env')) {
 
 server = http.createServer(app);
 
-
-
-
 server.listen(3000, host_ip, function () {
-    console.log('Video Server started on http://' + host_ip + ':3000');
+    //console.log('Video Server started on http://' + host_ip + ':3000');
 });
 
 
@@ -57,8 +54,13 @@ server_faye = http.createServer(app);
 bayeux.attach(server_faye);
 
 server_faye.listen(8000, host_ip, function () {
-    console.log('Video Server started on http://' + host_ip + ':8000');
+    //console.log('Video Server started on http://' + host_ip + ':8000');
 });
+
+
+
+
+
 
 
 
@@ -175,10 +177,13 @@ io.sockets.on('connection', function(socket){
 	// get the entry point from bootstrap
 	
 	
+	//console.log("Get the entry");
+	
 	var reply_coord = function(data) 
 	{
-		console.log(data);
-		socket.emit('reply_coordinator', { server_port: '3001' });
+		console.log("client request " + data.message);
+		//socket.emit('reply_coordinator', { server_port: '3001' });
+		socket.emit('reply_coordinator', { coord_ip: coordinator_details.IP, server_port: coordinator_details.port });
 	};
 	
 	
@@ -223,5 +228,131 @@ console.log("Client has unsubscribed to "+channel);
 }
   // event listener logic
 })
+
+
+
+
+//=======================================================
+
+// bootstrap server implementation
+
+var ipAddress_sh = '129.21.60.85';
+var ipAddress_a = '129.21.100.50';
+var ipAddress_so = '129.21.135.183';
+
+var listOfServers = [
+
+	{
+		name: "Server1",
+		IP: ipAddress_sh,
+		port: 3001,
+		ID: 5,
+		AmITheCoordinator: false
+	},
+	
+	{
+		name: "Server2",
+		IP: ipAddress_a,
+		port: 3001,
+		ID: 10,
+		AmITheCoordinator: false
+
+	},
+	
+	{
+		name: "Server3",
+		IP: ipAddress_so,
+		port: 3001,
+		ID: 15,
+		AmITheCoordinator: true
+	}
+
+];
+
+
+var coordinator_details = listOfServers[2];
+
+
+var bootstrap_server = http.createServer(app);
+
+bootstrap_server.listen(3006, host_ip, function () {
+    console.log('Bootstrap Server started on http://' + host_ip + ':3006');
+});
+
+
+// var io_boot = require('socket.io').listen(bootstrap_server);
+// io_boot.set('log level', 1);
+
+// io_boot.sockets.on('connection', function(socket){
+
+	// console.log("connected bootstrap");
+	
+	// socket.on('getCoordinatorDetails', function (data) {
+	
+		// console.log("get coordinator request from client: " + data.message);
+		// socket.emit('setCoordinatorDetails', { coordinator_details: coordinator_details });
+    
+	// });
+	
+	// socket.on('disconnect', function () {
+	
+		// console.log("I am asdfkljashdfks ");
+    
+	// });
+	
+	
+// });
+
+
+
+
+ConnectCoord(coordinator_details);
+
+
+function ConnectCoord(coordinator_details)
+{
+	var ioClnt = require('socket.io-client');
+	var socket_client = ioClnt.connect('http://' + coordinator_details.IP + ':' + coordinator_details.port); // connect to bootstrap
+	
+	if(coordinator_details.name !== "Server3")
+	{
+		socket_client.emit('connectionMessage', { message: 'Please ask me for details... !' });
+	}
+	
+	
+	// socket_client.on('getCoordinatorDetails', function (data) {
+		
+		// console.log("get coordinator request for client: " + data.message);
+		// socket_client.emit('setCoordinatorDetails', { coordinator_details: coordinator_details });
+
+	// });
+
+	socket_client.on('disconnect', function () {
+		
+		console.log("coordinator is down. election started. ");
+		startElection();
+	});
+}
+
+	
+	
+function startElection() {
+	
+	console.log("getting servers with higher identifiers ");
+	for(var i = 0; i < listOfServers.length; i++)
+	{
+		if(listOfServers[i].name === coordinator_details.name)
+		{
+			listOfServers.splice(i,1);
+			break;
+		}
+	}
+	
+	
+	coordinator_details = listOfServers[listOfServers.length - 1];
+	console.log(coordinator_details.name + " found with highest identifier.");
+	ConnectCoord(coordinator_details);
+	console.log("\n");
+}
 
 
