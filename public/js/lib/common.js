@@ -1,4 +1,4 @@
-var hostname, client;
+var hostname, client,client_get_video ;
 
 //hostname = window.location.hostname;
 hostname = '129.21.60.85';
@@ -11,16 +11,19 @@ function fizzle(e) {
 }
 
 function emit(event, data, file) {
+
+   
     file       = file || {};
     data       = data || {};
     data.event = event;
 	
+	
 	if(data.server_port !== undefined)
 	{
-		//
-		
+
 		console.log(data.video_serverIP + ':' + data.server_port + " common.js");
-		
+
+			
 		//client_get_video   = new BinaryClient('ws://' + hostname + ':' + data.server_port);
 		client_get_video   = new BinaryClient('ws://' + data.video_serverIP + ':' + data.server_port);
 		
@@ -33,8 +36,7 @@ function emit(event, data, file) {
 			
 			//client.send =  client_get_video.send(file, data);
 			
-			//return client.send;
-			
+
 			return client_get_video.send(file, data);
 			
 			
@@ -55,6 +57,7 @@ function emit(event, data, file) {
 		client_get_video.on('close', function() {
 			
 			client_get_video.close();
+			
 		});
 		
 		
@@ -66,9 +69,11 @@ function emit(event, data, file) {
 		console.log(data.server_port + " yyyyxxxxx");
 		return client.send(file, data);
 	}
-	
-	
 
-    
+
+	return client.send(file, data);
+		
+	}
+	
     
 }
